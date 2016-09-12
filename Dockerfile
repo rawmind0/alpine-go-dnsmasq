@@ -14,7 +14,7 @@ ENV SERVICE_NAME=go-dnsmasq \
     GOPATH=/opt/src \
     GOBIN=/gopath/bin
 ENV PATH=${SERVICE_HOME}/bin:${PATH} \
-    SERVICE_URL=https://github.com/janeczku/go-dnsmasq/releases/download/${SERVICE_VERSION}/ && \
+    SERVICE_URL=https://github.com/janeczku/go-dnsmasq/releases/download/${SERVICE_VERSION}/ \
     SERVICE_RELEASE=go-dnsmasq_linux-amd64
 RUN chmod +x /go-dnsmasq
 
