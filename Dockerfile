@@ -19,6 +19,7 @@ ENV PATH=${SERVICE_HOME}/bin:${PATH} \
 
 # Install and configure go-dnsmasq
 RUN mkdir -p ${SERVICE_HOME}/bin ${SERVICE_HOME}/log && \
+    apk add --no-cache libcap  && \
     cd ${SERVICE_HOME}/bin && \
     curl -O -sSL ${SERVICE_URL}/${SERVICE_RELEASE} && \
     curl -O -sSL ${SERVICE_URL}/${SERVICE_RELEASE}.sha256 && \
