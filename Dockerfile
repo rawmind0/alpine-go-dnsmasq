@@ -19,9 +19,10 @@ ENV PATH=${SERVICE_HOME}/bin:${PATH} \
 
 # Install and configure go-dnsmasq
 RUN mkdir -p ${SERVICE_HOME}/bin ${SERVICE_HOME}/log && \
+    cd ${SERVICE_HOME}/bin && \
     curl -O -sSL ${SERVICE_URL}/${SERVICE_RELEASE} && \
     curl -O -sSL ${SERVICE_URL}/${SERVICE_RELEASE}.sha256 && \
-    sha256sum -c ${SERVICE_RELEASE}.tar.bz2.sha256 && \
+    sha256sum -c ${SERVICE_RELEASE}.sha256 && \
     mv ${SERVICE_RELEASE} go-dnsmasq && \
     addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} && \
     adduser -g "${SERVICE_NAME} user" -D -h ${SERVICE_HOME} -G ${SERVICE_GROUP} -s /sbin/nologin -u ${SERVICE_UID} ${SERVICE_USER} 
