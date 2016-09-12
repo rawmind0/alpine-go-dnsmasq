@@ -16,7 +16,6 @@ ENV SERVICE_NAME=go-dnsmasq \
 ENV PATH=${SERVICE_HOME}/bin:${PATH} \
     SERVICE_URL=https://github.com/janeczku/go-dnsmasq/releases/download/${SERVICE_VERSION}/ \
     SERVICE_RELEASE=go-dnsmasq_linux-amd64
-RUN chmod +x /go-dnsmasq
 
 # Install and configure go-dnsmasq
 RUN mkdir -p ${SERVICE_HOME}/bin ${SERVICE_HOME}/log && \
@@ -28,7 +27,7 @@ RUN mkdir -p ${SERVICE_HOME}/bin ${SERVICE_HOME}/log && \
     adduser -g "${SERVICE_NAME} user" -D -h ${SERVICE_HOME} -G ${SERVICE_GROUP} -s /sbin/nologin -u ${SERVICE_UID} ${SERVICE_USER} 
 
 ADD root /
-RUN chmod +x ${SERVICE_HOME}/bin/go-dnsmasq && \
+RUN chmod +x ${SERVICE_HOME}/bin/go-dnsmasq ${SERVICE_HOME}/bin/*.sh && \
     chown -R ${SERVICE_USER}:${SERVICE_GROUP} ${SERVICE_HOME} /opt/monit && \
     setcap 'cap_net_bind_service=+ep' ${SERVICE_HOME}/bin/go-dnsmasq
 
