@@ -1,3 +1,6 @@
+[![](https://images.microbadger.com/badges/image/rawmind/alpine-go-dnsmasq.svg)](https://microbadger.com/images/rawmind/alpine-go-dnsmasq "Get your own image badge on microbadger.com")
+
+
 alpine-go-dnsmasq 
 =================
 
@@ -11,7 +14,7 @@ docker build -t rawmind/alpine-go-dnsmasq:<version> .
 
 ## Versions
 
-- `1.0.6` [(Dockerfile)](https://github.com/rawmind0/alpine-go-dnsmasq/blob/2.5.3-4/Dockerfile)
+- `1.0.6-1` [(Dockerfile)](https://github.com/rawmind0/alpine-go-dnsmasq/blob/1.0.6-1/Dockerfile)
 
 ## Configuration
 
@@ -23,21 +26,22 @@ Besides, you can customize the configuration in several ways:
 
 Etcd is installed with the default configuration and some parameters can be overrided with env variables:
 
-- DNSMASQ_LISTEN=${DNSMASQ_LISTEN:-"0.0.0.0:53"}
-- DNSMASQ_SEARCH_DOMAINS=${DNSMASQ_SEARCH_DOMAINS:-"dev.local"}
-- DNSMASQ_ENABLE_SEARCH=${DNSMASQ_ENABLE_SEARCH:-"True"}
-- DNSMASQ_SERVERS=${DNSMASQ_SERVERS:-"8.8.8.8:53,8.8.4.4:53"}
-- DNSMASQ_FWD_NDOTS=${DNSMASQ_FWD_NDOTS:-"0"}
-- DNSMASQ_NDOTS=${DNSMASQ_NDOTS:-"1"}
-- DNSMASQ_RCACHE=${DNSMASQ_RCACHE:-"0"}
-- DNSMASQ_RR=${DNSMASQ_RR:-"True"}
-- DNSMASQ_VERBOSE=${DNSMASQ_VERBOSE:-"True"}
-- STUB_ZONES=${STUB_ZONES:-"rancher.internal/169.254.169.250"}
+- DNSMASQ_LISTEN="0.0.0.0:53"					# Address to bind
+- DNSMASQ_SEARCH_DOMAINS="rancher.internal"		# Search domains. Multiple values with , separator 
+- DNSMASQ_ENABLE_SEARCH="True"					# Enable search feature
+- DNSMASQ_SERVERS="8.8.8.8:53,8.8.4.4:53"		# Dns forwarders
+- DNSMASQ_FWD_NDOTS="0"							# Number of dots a name must have before the query is forwarded
+- DNSMASQ_NDOTS="1"								# Number of dots a name must have before making an initial absolute query 
+- DNSMASQ_NOREC="False"							# Disable forwarding of queries to upstream nameservers
+- DNSMASQ_RCACHE="0"							# Capacity of the response cache. (‘0‘ disables caching)
+- DNSMASQ_RR="True"								# Enable round robin of A/AAAA records
+- DNSMASQ_VERBOSE="True"						# Enable verbose logging
+- STUB_ZONES="rancher.internal/169.254.169.250"	# Use different nameservers for given domains. Multiple values with , separator
 
 
 ### Custom Configuration
 
-go-dnsmasq is installed under /opt/go-dnsmasq and make use of /opt/go-dnsmasq/bin/go-dnsmasq-source.sh to source env variables.
+go-dnsmasq is installed under /opt/go-dnsmasq and make use of /opt/go-dnsmasq/bin/go-dnsmasq-source.sh to generate /opt/go-dnsmasq/etc/skydns-source source env variables.
 
 You can edit this files in order customize configuration
 
