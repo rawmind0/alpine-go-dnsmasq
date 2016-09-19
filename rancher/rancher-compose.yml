@@ -16,7 +16,7 @@
     - variable: "resolver_verbose"
       label: "Enable resolver verbose log:"
       description: |
-        Enable resolver search verbose log
+        Enable resolver verbose log
       default: True
       required: true
       type: boolean
@@ -46,12 +46,6 @@
       required: true
       default: "8.8.8.8:53,8.8.4.4:53"
       type: "string"
-    - variable: "skydns_ndots"
-      description: "skydns_ndots"
-      label: "skydns_ndots:"
-      required: true
-      default: "1"
-      type: "int"
 skydns:
   scale: ${resolver_scale}
   retain_ip: true

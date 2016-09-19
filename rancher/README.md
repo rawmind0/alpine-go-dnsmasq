@@ -1,25 +1,34 @@
-# Skydns (Experimental)
+# Resolver (Experimental)
 
 ### Info:
 
- This template deploys a skydns service.
+ This template deploys go-dnsmasq as dns resolver service.
  
  
 ### Usage:
 
- Select skydns from catalog. 
+ Select Resolver from catalog. 
 
- Change the following skydns default parameters, if you need:
+ Change the following resolver default parameters, if you need:
 
-- skydns_scale=3
-- skydns_etcd="http://etcd:2379"	# Multiple values separated by ,
-- skydns_addr="0.0.0.0:53"
-- skydns_domain="dev.local"
-- skydns_nameservers="8.8.8.8:53,8.8.4.4:53"
-- skydns_path_prefix="skydns"
-- skydns_ndots="2"
+- resolver_scale=3
+- resolver_verbose=True 						# Enable resolver verbose log
+- resolver_search=True 							# Enable resolver search feature
+- resolver_search_domains="rancher.internal"	# Resolver search domains
+- resolver_no_rec=False							# Disable resolver forward recursion
+- resolver_nameservers="8.8.8.8:53,8.8.4.4:53"	# Resolver nameservers forwarders
  
+
+
+    - variable: "resolver_no_rec"
+      label: "Disable resolver forward:"
+      description: |
+        Disable resolver forward recursion
+      default: False
+      required: true
+      type: boolean
+    - variable: "resolver_nameservers"
  Click deploy.
  
- skydns can now be accessed over the Rancher network. 
+ Resolver can now be accessed over the Rancher network. 
 
