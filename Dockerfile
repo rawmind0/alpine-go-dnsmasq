@@ -3,7 +3,6 @@ MAINTAINER Raul Sanchez <rawmind@gmail.com>
 
 ENV SERVICE_NAME=go-dnsmasq \
     SERVICE_HOME=/opt/go-dnsmasq \
-    SERVICE_CONF=/opt/go-dnsmasq/etc/go-dnsmasq-source \
     SERVICE_VERSION=1.0.6 \
     SERVICE_USER=go-dnsmasq \
     SERVICE_UID=10009 \
@@ -14,11 +13,12 @@ ENV SERVICE_NAME=go-dnsmasq \
     GOPATH=/opt/src \
     GOBIN=/gopath/bin
 ENV PATH=${SERVICE_HOME}/bin:${PATH} \
+    SERVICE_CONF=${SERVICE_HOME}/etc/go-dnsmasq-source \
     SERVICE_URL=https://github.com/janeczku/go-dnsmasq/releases/download/${SERVICE_VERSION}/ \
     SERVICE_RELEASE=go-dnsmasq_linux-amd64
 
 # Install and configure go-dnsmasq
-RUN mkdir -p ${SERVICE_HOME}/bin ${SERVICE_HOME}/log && \
+RUN mkdir -p ${SERVICE_HOME}/bin ${SERVICE_HOME}/log ${SERVICE_HOME}/etc && \
     apk add --no-cache libcap  && \
     cd ${SERVICE_HOME}/bin && \
     curl -O -sSL ${SERVICE_URL}/${SERVICE_RELEASE} && \

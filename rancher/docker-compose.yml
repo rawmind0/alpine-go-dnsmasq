@@ -1,5 +1,7 @@
 resolver:
-  image: janeczku/go-dnsmasq:v1.0.6-2
+  image: rawmind/alpine-go-dnsmasq:1.0.6-3
+  volumes_from:
+    - resolver-conf
   environment:
     - DNSMASQ_LISTEN=0.0.0.0:53
     - DNSMASQ_SEARCH_DOMAINS=${resolver_search_domains}
@@ -11,8 +13,17 @@ resolver:
     - DNSMASQ_RCACHE=0
     - DNSMASQ_RR=True
     - DNSMASQ_VERBOSE=${resolver_verbose}
-    - STUB_ZONES=rancher.internal/169.254.169.250
   labels: 
     io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.container.hostname_override: container_name
+    io.rancher.sidekicks: resolver-conf
     io.skydns.role: resolver
+resolver-conf:
+  net: none
+  labels:
+    io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+    io.rancher.container.hostname_override: container_name
+    io.rancher.container.start_once: true
+  image: rawmind/rancher-go-dnsmasq:1.0.6-1
+  volumes:
+    - /opt/tools
