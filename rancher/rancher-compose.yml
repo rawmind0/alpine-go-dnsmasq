@@ -1,56 +1,59 @@
 .catalog:
-  name: Skydns
-  version: 2.5.3-rancher1
+  name: Resolver
+  version: 1.0.6-rancher1
   description: |
-    (Experimental) Skydns service.
+    (Experimental) go-dnsmasq as dns resolver service.
   minimum_rancher_version: v1.11.0
   maintainer: "Raul Sanchez <rawmind@gmail.com>"
-  uuid: skydns-0
+  uuid: resolver-0
   questions:
-    - variable: "skydns_scale"
-      description: "Skydns scale to deploy"
-      label: "Skydns scale:"
+    - variable: "resolver_scale"
+      description: "Resolver scale to deploy"
+      label: "Resolver scale:"
       required: true
       default: "3"
       type: "int"
-    - variable: "skydns_etcd"
-      description: "Etcd url to connect to"
-      label: "Etcd url:"
+    - variable: "resolver_verbose"
+      label: "Enable resolver verbose log:"
+      description: |
+        Enable resolver search verbose log
+      default: True
       required: true
-      default: "http://etcd:2379"
-      type: "string"
-    - variable: "skydns_addr"
-      description: "Skydns address to bind."
-      label: "Skydns bind:"
+      type: boolean
+    - variable: "resolver_search"
+      label: "Enable resolver search:"
+      description: |
+        Enable resolver search feature
+      default: True
       required: true
-      default: "0.0.0.0:53" 
-      type: "string"
-    - variable: "skydns_domain"
-      description: "Skydns domain"
-      label: "Skydns domain:"
+      type: boolean
+    - variable: "resolver_search_domains"
+      description: "Resolver search domains"
+      label: "Resolver search domains:"
       required: true
-      default: "dev.local"
+      default: "rancher.internal"
       type: "string"
-    - variable: "skydns_nameservers"
+    - variable: "resolver_no_rec"
+      label: "Disable resolver forward:"
+      description: |
+        Disable resolver forward recursion
+      default: False
+      required: true
+      type: boolean
+    - variable: "resolver_nameservers"
       description: "Skydns nameservers forwarders."
       label: "Skydns nameservers:"
       required: true
       default: "8.8.8.8:53,8.8.4.4:53"
       type: "string"
-    - variable: "skydns_path_prefix"
-      description: "Skydns path prefix"
-      label: "Skydns path prefix:"
-      required: true
-      default: "skydns"
-      type: "string"
     - variable: "skydns_ndots"
       description: "skydns_ndots"
       label: "skydns_ndots:"
       required: true
-      default: 5
-      type: "string"
+      default: "1"
+      type: "int"
 skydns:
-  scale: ${skydns_scale}
+  scale: ${resolver_scale}
   retain_ip: true
   health_check:
     port: 53

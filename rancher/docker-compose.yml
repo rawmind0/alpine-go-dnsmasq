@@ -1,28 +1,18 @@
-skydns:
-  tty: true
-  image: rawmind/alpine-skydns:2.5.3-3
-  environment:
-    - ETCD_MACHINES=${skydns_etcd}
-    - SKYDNS_ADDR=${skydns_addr}
-    - SKYDNS_DOMAIN=${skydns_domain} 
-    - SKYDNS_NAMESERVERS=${skydns_nameservers} 
-    - SKYDNS_PATH_PREFIX=${skydns_path_prefix}
-    - SKYDNS_NDOTS=${skydns_ndots}
-  labels: 
-    io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-    io.rancher.container.hostname_override: container_name
 resolver:
-  image: janeczku/go-dnsmasq:v1.0.6
+  image: janeczku/go-dnsmasq:v1.0.6-1
   environment:
     - DNSMASQ_LISTEN=0.0.0.0:53
-    - DNSMASQ_SEARCH_DOMAINS=${skydns_domain}
-    - DNSMASQ_ENABLE_SEARCH=True
-    - DNSMASQ_SERVERS=${skydns_nameservers}
+    - DNSMASQ_SEARCH_DOMAINS=${resolver_search_domains}
+    - DNSMASQ_ENABLE_SEARCH=${resolver_search}
+    - DNSMASQ_SERVERS=${resolver_nameservers}
     - DNSMASQ_FWD_NDOTS=0
     - DNSMASQ_NDOTS=1
+    - DNSMASQ_NOREC=${resolver_no_rec}
     - DNSMASQ_RCACHE=0
     - DNSMASQ_RR=True
-  command: -z innotechapp.com/10.0.8.51
+    - DNSMASQ_VERBOSE=${resolver_verbose}
+    - STUB_ZONES=rancher.internal/169.254.169.250
   labels: 
     io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.container.hostname_override: container_name
+    io.skydns.role: resolver
