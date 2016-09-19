@@ -1,5 +1,5 @@
 resolver:
-  image: janeczku/go-dnsmasq:v1.0.6-1
+  image: janeczku/go-dnsmasq:v1.0.6-2
   environment:
     - DNSMASQ_LISTEN=0.0.0.0:53
     - DNSMASQ_SEARCH_DOMAINS=${resolver_search_domains}

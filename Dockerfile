@@ -3,7 +3,7 @@ MAINTAINER Raul Sanchez <rawmind@gmail.com>
 
 ENV SERVICE_NAME=go-dnsmasq \
     SERVICE_HOME=/opt/go-dnsmasq \
-    SERVICE_CONF=/opt/go-dnsmasq/etc/skydns-source \
+    SERVICE_CONF=/opt/go-dnsmasq/etc/go-dnsmasq-source \
     SERVICE_VERSION=1.0.6 \
     SERVICE_USER=go-dnsmasq \
     SERVICE_UID=10009 \
