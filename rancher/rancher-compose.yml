@@ -17,14 +17,14 @@
       label: "Enable resolver verbose log:"
       description: |
         Enable resolver verbose log
-      default: True
+      default: true
       required: true
       type: boolean
     - variable: "resolver_search"
       label: "Enable resolver search:"
       description: |
         Enable resolver search feature
-      default: True
+      default: true
       required: true
       type: boolean
     - variable: "resolver_search_domains"
@@ -37,12 +37,12 @@
       label: "Disable resolver forward:"
       description: |
         Disable resolver forward recursion
-      default: False
+      default: false
       required: true
       type: boolean
     - variable: "resolver_nameservers"
-      description: "Skydns nameservers forwarders."
-      label: "Skydns nameservers:"
+      description: "Resolver nameservers forwarders."
+      label: "Resolver nameservers:"
       required: true
       default: "8.8.8.8:53,8.8.4.4:53"
       type: "string"

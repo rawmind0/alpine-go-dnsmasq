@@ -18,16 +18,6 @@
 - resolver_no_rec=False							# Disable resolver forward recursion
 - resolver_nameservers="8.8.8.8:53,8.8.4.4:53"	# Resolver nameservers forwarders
  
-
-
-    - variable: "resolver_no_rec"
-      label: "Disable resolver forward:"
-      description: |
-        Disable resolver forward recursion
-      default: False
-      required: true
-      type: boolean
-    - variable: "resolver_nameservers"
  Click deploy.
  
  Resolver can now be accessed over the Rancher network. 

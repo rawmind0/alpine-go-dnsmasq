@@ -14,7 +14,7 @@ docker build -t rawmind/alpine-go-dnsmasq:<version> .
 
 ## Versions
 
-- `1.0.6-2` [(Dockerfile)](https://github.com/rawmind0/alpine-go-dnsmasq/blob/1.0.6-2/Dockerfile)
+- `1.0.6-3` [(Dockerfile)](https://github.com/rawmind0/alpine-go-dnsmasq/blob/1.0.6-3/Dockerfile)
 
 ## Configuration
 
@@ -45,7 +45,15 @@ go-dnsmasq is installed under /opt/go-dnsmasq and make use of /opt/go-dnsmasq/bi
 
 You can edit this files in order customize configuration
 
+If you are running it in rancher, you could run [rancher-go-dnsmasq][rancher-go-dnsmasq] as a sidekick to get dynamic configuration.
+
+
+## Example
+
+See [rancher-example][rancher-example], that run kafka in a rancher system with dynamic configuration.
+
 
 [alpine-monit]: https://github.com/rawmind0/alpine-monit/
 [go-dnsmasq]: https://github.com/janeczku/go-dnsmasq
-
+[rancher-go-dnsmasq]: https://hub.docker.com/r/rawmind/rancher-go-dnsmasq/
+[rancher-example]: https://github.com/rawmind0/alpine-go-dnsmasq/tree/master/rancher
