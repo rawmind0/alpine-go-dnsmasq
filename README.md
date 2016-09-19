@@ -14,7 +14,7 @@ docker build -t rawmind/alpine-go-dnsmasq:<version> .
 
 ## Versions
 
-- `1.0.6-1` [(Dockerfile)](https://github.com/rawmind0/alpine-go-dnsmasq/blob/1.0.6-1/Dockerfile)
+- `1.0.6-2` [(Dockerfile)](https://github.com/rawmind0/alpine-go-dnsmasq/blob/1.0.6-2/Dockerfile)
 
 ## Configuration
 
